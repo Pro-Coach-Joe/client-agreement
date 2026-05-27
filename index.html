@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Master Client Services Agreement — Premier Health & Lifestyle / Pro Coach Joe.">
+<title>Client Agreement — Premier Health &amp; Lifestyle</title>
+<script src="https://unpkg.com/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<style>
+  :root {
+    --brand: #3a7c6e;
+    --brand-dark: #2a5c52;
+    --brand-light: #e8f3f0;
+    --cream: #f5ede6;
+    --border: #d9cfc8;
+    --legal-bg: #f7f7f5;
+    --legal-border: #e2e2de;
+    --text: #1e2a28;
+    --muted: #6b7b77;
+    --card: #fff;
+    --red: #c0392b;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; font-size: 15px; }
+
+  header { background: var(--brand); color: white; padding: 16px 28px; display: flex; align-items: center; gap: 14px; }
+  header h1 { font-size: 1.05rem; font-weight: 700; }
+  header p { font-size: .75rem; opacity: .8; }
+
+  .shell { max-width: 800px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .doc-header { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 32px; margin-bottom: 20px; text-align: center; }
+  .doc-header h2 { font-size: 1.3rem; font-weight: 800; color: var(--brand-dark); letter-spacing: -.3px; margin-bottom: 4px; }
+  .doc-header .meta { font-size: .8rem; color: var(--muted); }
+
+  .biz-info { background: var(--brand-light); border-radius: 8px; padding: 14px 18px; margin-top: 18px; text-align: left; font-size: .85rem; line-height: 1.7; color: var(--text); }
+  .biz-info strong { color: var(--brand-dark); }
+
+  .section { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden; }
+  .section-header { background: var(--brand); color: white; padding: 12px 24px; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; }
+  .section-body { padding: 24px; }
+
+  .legal-text { background: var(--legal-bg); border: 1px solid var(--legal-border); border-radius: 8px; padding: 16px 20px; font-size: .84rem; line-height: 1.75; color: #333; margin-bottom: 18px; }
+  .legal-text p { margin-bottom: 10px; }
+  .legal-text p:last-child { margin-bottom: 0; }
+  .legal-text ul { padding-left: 20px; margin: 8px 0; }
+  .legal-text li { margin-bottom: 5px; }
+  .legal-text strong { color: var(--text); }
+  .legal-text .notice { font-weight: 700; text-transform: uppercase; font-size: .82rem; color: var(--red); }
+
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  label { display: block; font-size: .83rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  label .note { font-weight: 400; color: var(--muted); }
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea, select {
+    width: 100%; padding: 9px 13px; border: 1px solid var(--border); border-radius: 7px;
+    font-size: .88rem; color: var(--text); background: #fafafa; font-family: inherit;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(58,124,110,.12); background: #fff; }
+  textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 580px) { .row-2, .row-3 { grid-template-columns: 1fr; } }
+
+  .radio-group, .check-group { display: flex; flex-direction: column; gap: 7px; }
+  .radio-item, .check-item { display: flex; align-items: center; gap: 9px; font-size: .87rem; cursor: pointer; padding: 7px 10px; border-radius: 6px; border: 1px solid transparent; }
+  .radio-item:hover, .check-item:hover { background: var(--brand-light); }
+  .radio-item input, .check-item input { width: 15px; height: 15px; accent-color: var(--brand); flex-shrink: 0; }
+
+  .initials-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); }
+  .initials-row label { margin: 0; white-space: nowrap; font-size: .82rem; color: var(--muted); }
+  .initials-input { width: 90px !important; text-align: center; font-weight: 700; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; flex-shrink: 0; }
+
+  .sig-canvas-wrap { border: 2px dashed var(--border); border-radius: 8px; background: #fafafa; position: relative; margin-bottom: 10px; }
+  #sig-canvas { display: block; width: 100%; height: 160px; border-radius: 6px; cursor: crosshair; touch-action: none; }
+  .sig-actions { display: flex; gap: 10px; margin-bottom: 18px; }
+  .btn-clear { background: none; border: 1px solid var(--border); padding: 7px 16px; border-radius: 7px; font-size: .82rem; color: var(--muted); cursor: pointer; }
+  .btn-clear:hover { border-color: var(--red); color: var(--red); }
+
+  .sig-section { border-top: 2px solid var(--brand-light); padding-top: 20px; margin-top: 20px; }
+  .sig-section h3 { font-size: .88rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 14px; }
+
+  .submit-row { text-align: center; margin-top: 32px; }
+  .btn-submit { background: var(--brand); color: white; border: none; padding: 16px 52px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background .15s, transform .08s; }
+  .btn-submit:hover { background: var(--brand-dark); }
+  .btn-submit:active { transform: scale(.97); }
+
+  .success-msg { display: none; text-align: center; padding: 60px 20px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); }
+  .success-msg .icon { font-size: 3rem; color: var(--brand); margin-bottom: 14px; }
+  .success-msg h2 { font-size: 1.4rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 8px; }
+  .success-msg p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+
+  .yes-no { display: flex; gap: 10px; }
+  .yes-no label { display: flex; align-items: center; gap: 6px; font-weight: 500; cursor: pointer; padding: 7px 16px; border-radius: 7px; border: 1px solid var(--border); background: #fafafa; font-size: .86rem; }
+  .yes-no input { display: none; }
+  .yes-no label:has(input:checked) { background: var(--brand-light); border-color: var(--brand); font-weight: 700; color: var(--brand-dark); }
+
+  .fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .fee-grid { grid-template-columns: 1fr; } }
+
+  .required-note { font-size: .78rem; color: var(--muted); margin-bottom: 20px; }
+  .required-note span { color: var(--red); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Premier Health &amp; Lifestyle</h1>
+    <p>Pro Coach Joe &nbsp;·&nbsp; train@procoachjoe.com &nbsp;·&nbsp; 214-422-9212</p>
+  </div>
+</header>
+
+<div class="shell">
+
+  <div class="doc-header">
+    <h2>Master Client Services Agreement</h2>
+    <div class="meta">Version 1.0 &nbsp;·&nbsp; Effective Date: April 22, 2026</div>
+    <div class="biz-info">
+      <strong>Premier Health &amp; Lifestyle</strong><br>
+      12275 Martell Road #17, Jackson, CA 95642<br>
+      Phone: 214-422-9212 &nbsp;·&nbsp; Email: train@procoachjoe.com
+    </div>
+  </div>
+
+  <form id="agreement-form" action="https://formspree.io/f/REPLACE_WITH_AGREEMENT_FORM_ID" method="POST">
+    <input type="hidden" name="_subject" value="Signed Client Services Agreement">
+
+    <p class="required-note">All fields are required unless marked optional. By completing and submitting this form you confirm you have read and agree to all terms below.</p>
+
+    <!-- SECTION 2: Client Information -->
+    <div class="section">
+      <div class="section-header">2. Client Information</div>
+      <div class="section-body">
+        <div class="field">
+          <label for="full-name">Full Legal Name</label>
+          <input type="text" id="full-name" name="Full Legal Name" required placeholder="As it appears on your ID">
+        </div>
+        <div class="field">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="Address" required placeholder="Street, City, State, ZIP">
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="Phone" required placeholder="(555) 000-0000">
+          </div>
+          <div class="field">
+            <label for="client-email">Email</label>
+            <input type="email" id="client-email" name="Email" required placeholder="you@example.com">
+            <input type="hidden" name="_replyto" id="replyto-field">
+          </div>
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="Date of Birth" required>
+          </div>
+          <div class="field">
+            <label for="ec">Emergency Contact &amp; Phone</label>
+            <input type="text" id="ec" name="Emergency Contact and Phone" required placeholder="Name — (555) 000-0000">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Program & Services -->
+    <div class="section">
+      <div class="section-header">3. Program &amp; Services</div>
+      <div class="section-body">
+        <div class="field">
+          <label>Client is enrolling in: <span class="note">(select one)</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="Program Type" value="Semi-Private Coaching" required> Semi-Private Coaching</label>
+            <label class="radio-item"><input type="radio" name="Program Type" value="Private Coaching"> Private Coaching</label>
+            <label class="radio-item"><input type="radio" name="Program Type" value="Online Coaching"> Online Coaching</label>
+            <label class="radio-item"><input type="radio" name="Program Type" value="Small Group Training"> Small Group Training</label>
+            <label class="radio-item"><input type="radio" name="Program Type" value="Hybrid Coaching"> Hybrid Coaching</label>
+          </div>
+        </div>
+        <div class="legal-text">
+          <p>Services may include strength training, conditioning, mobility work, lifestyle coaching, nutrition coaching, digital programming, and related services.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: Term & Billing -->
+    <div class="section">
+      <div class="section-header">4. Term &amp; Billing</div>
+      <div class="section-body">
+        <div class="field">
+          <label>Term: <span class="note">(select one)</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="Term Type" value="Month-to-Month" required> Month-to-Month</label>
+            <label class="radio-item"><input type="radio" name="Term Type" value="Minimum Term"> Minimum Term</label>
+            <label class="radio-item"><input type="radio" name="Term Type" value="Annual Agreement (12 months)"> Annual Agreement (12 months)</label>
+          </div>
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="start-date">Start Date</label>
+            <input type="date" id="start-date" name="Start Date" required>
+          </div>
+          <div class="field">
+            <label for="end-date">End Date <span class="note">(if applicable)</span></label>
+            <input type="date" id="end-date" name="End Date">
+          </div>
+        </div>
+        <div class="fee-grid">
+          <div class="field">
+            <label for="enroll-fee">Enrollment Fee <span class="note">(one-time, if any)</span></label>
+            <input type="text" id="enroll-fee" name="Enrollment Fee" placeholder="e.g. $0 or $150">
+          </div>
+          <div class="field">
+            <label for="recurring-fee">Recurring Membership Fee</label>
+            <input type="text" id="recurring-fee" name="Recurring Membership Fee" required placeholder="e.g. $299 per 4-week cycle">
+          </div>
+        </div>
+        <div class="field">
+          <label for="min-obligation">Total Minimum Financial Obligation <span class="note">(if applicable)</span></label>
+          <input type="text" id="min-obligation" name="Total Minimum Financial Obligation" placeholder="e.g. $897 (3 months)">
+        </div>
+        <div class="legal-text">
+          <p>Client understands and agrees they are financially responsible for the total minimum obligation above, except as otherwise provided under California law.</p>
+          <p>Unless otherwise stated in the Program Details Addendum, all coaching programs have a minimum commitment of <strong>twelve (12) consecutive weeks</strong>. Client understands that this is the minimum amount of time reasonably required to evaluate progress and results. Except for Client's cancellation rights under California law, Client agrees they are financially responsible for all payments due for the full 12-week minimum, regardless of actual usage, attendance, or participation.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: 12-week minimum" maxlength="5" required placeholder="___">
+        </div>
+        <div class="legal-text" style="margin-top:16px">
+          <p><strong>Paid-In-Full (PIF) Programs:</strong> If the Client selects a Paid-In-Full option, the payment covers the entire agreed program term. After the applicable statutory cancellation period under California law has passed, Paid-In-Full amounts are not refundable in cash. At the Business's sole discretion, unused value may be converted into a credit toward future services. The Client understands there is no guarantee of any refund beyond what is required by law.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: PIF policy" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: Auto-Renewal -->
+    <div class="section">
+      <div class="section-header">5. Automatic Renewal &amp; Cancellation</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p class="notice">This agreement renews automatically, and your payment method will be charged each billing cycle unless you cancel as described below.</p>
+          <p>Client authorizes recurring charges to the payment method on file until the charges are canceled.</p>
+          <p><strong>How to Cancel:</strong> Client must provide written notice by:</p>
+          <ul>
+            <li>Email: train@procoachjoe.com, or</li>
+            <li>Hand-delivered written notice at the business address above.</li>
+          </ul>
+          <p>Unless California law requires otherwise, cancellation is effective at the end of the current billing cycle.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: auto-renewal" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: CA Cancellation -->
+    <div class="section">
+      <div class="section-header">6. California Statutory Notice of Cancellation</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>You, the buyer, may cancel this agreement at any time before midnight of the <strong>fifth business day</strong> after the date of this agreement, excluding Sundays and holidays.</p>
+          <p>To cancel this agreement, mail, email, or deliver a signed and dated notice to:<br>
+          <strong>Premier Health &amp; Lifestyle — 12275 Martell Road #17, Jackson, CA 95642</strong></p>
+          <p>If you cancel within this time period, you are entitled to a <strong>full refund of all amounts paid within 10 days</strong> after cancellation.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: CA cancellation" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7: App Access -->
+    <div class="section">
+      <div class="section-header">7. App / Workout Access When Moving or on Vacation</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Coaching services may include access to a mobile app, programmed workouts, and digital resources. App and workout access are provided only while this Agreement is active and the account is in good standing.</p>
+          <p>If Client is traveling or temporarily unable to attend in-studio sessions, Client may request to switch to a remote "Travel Mode" or Online Coaching option (if available) so that programming and coaching support can continue while away. Billing will continue at the applicable rate.</p>
+          <p>If Client permanently relocates more than 25 miles from the facility, Client may either: (1) elect to continue services through an Online or Hybrid program, or (2) exercise any applicable cancellation rights under California law.</p>
+          <p>Upon cancellation or termination of this Agreement, access to the app and workout programming will end at the conclusion of the final paid billing period.</p>
+          <p><strong>Additional Cancellation Rights:</strong> You may also cancel if: (1) you become medically disabled and are unable to use the services, or (2) the studio permanently ceases operations. Reasonable documentation may be required.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: app access" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 8: Payment Authorization -->
+    <div class="section">
+      <div class="section-header">8. Payment Authorization &amp; Failed Payments</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Client authorizes the Business to charge the payment method provided for all enrollment fees, recurring fees, and applicable charges. Client agrees to:</p>
+          <ul>
+            <li>Keep billing information current.</li>
+            <li>Be responsible for failed payments.</li>
+            <li>Pay late fees of <strong>$30</strong>.</li>
+          </ul>
+          <p>The Business may suspend or terminate services for non-payment.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: payment auth" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 9: Payment Method on File -->
+    <div class="section">
+      <div class="section-header">9. Payment Method on File</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Client agrees to maintain at least one valid credit or debit card on file for the duration of this Agreement. By placing a card on file, Client authorizes Premier Health &amp; Lifestyle to charge the card for:</p>
+          <ul>
+            <li>Recurring membership fees and add-on services;</li>
+            <li>Approved paid-in-full programs;</li>
+            <li>Late-cancel / no-show fees and other charges described in this Agreement; and</li>
+            <li>Any past-due balances that remain unpaid after notice is provided.</li>
+          </ul>
+          <p>If Client elects to pay by cash or other method for any billing cycle and payment is not received by the due date, Client authorizes Premier Health &amp; Lifestyle to charge the card on file for the amount due. If the payment method on file is declined, Premier Health &amp; Lifestyle may reattempt the charge and may suspend services until the account is brought current.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: payment method on file" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 10: Scheduling -->
+    <div class="section">
+      <div class="section-header">10. Scheduling, Attendance &amp; App Use</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Premier Health &amp; Lifestyle uses the <strong>Trainerize app</strong> as the primary source of truth for class schedules, reservations, and attendance.</p>
+          <ul>
+            <li>All members are required to create and maintain an active account in the app.</li>
+            <li>Members must reserve their sessions in advance and sign in through the app for each visit.</li>
+            <li>Cancellations and schedule changes must be made through the app, in accordance with the studio's cancellation policy.</li>
+            <li>The app calendar, along with any email/text updates from Premier, serves as the official schedule and communication channel.</li>
+          </ul>
+          <p>Failure to use the app to book or sign in does not entitle a member to credits, refunds, or make-up sessions if space is unavailable or a class time has been changed with proper notice.</p>
+          <p>Members agree to keep their email, mobile number, and app notifications current and to review app messages, emails, and texts from Premier promptly.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: scheduling" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 11: No-show -->
+    <div class="section">
+      <div class="section-header">11. No-Show / Late-Cancel &amp; Session Expiry</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Sessions must be canceled or rescheduled at least <strong>12 hours</strong> before the scheduled start time.</p>
+          <ul>
+            <li><strong>12+ hours in advance:</strong> No penalty; you may reschedule as availability allows.</li>
+            <li><strong>Less than 12 hours:</strong> Late cancellation — may be forfeited for that week's allocation or subject to a late-cancel fee.</li>
+            <li><strong>No-show:</strong> Not attending without notifying us before start time — session is forfeited or subject to a no-show fee.</li>
+          </ul>
+          <p>Repeated late cancellations or no-shows may result in loss of your reserved time slot and/or changes to your booking privileges. Make-ups, when offered, must be used within 14 days and are subject to schedule availability.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: no-show policy" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 12: Freeze -->
+    <div class="section">
+      <div class="section-header">12. Freeze / Hold Policy</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Freezes are designed for extended situations, not for occasional missed sessions. Short trips and busy weeks are handled inside your active membership using Travel Mode and app-based workouts.</p>
+          <p><strong>Eligibility:</strong> A freeze may be requested only for: (1) Extended Travel — away from in-studio sessions for at least 2 consecutive weeks; (2) Medical — medically unable to participate for at least 2 consecutive weeks (doctor's note may be required); or (3) Exceptional Hardship — at the Business's sole discretion.</p>
+          <p><strong>How to Request:</strong> Submit a written freeze request at least 7 days before the next billing date. Retroactive freezes are not permitted. Account must be current (no past-due balance).</p>
+          <p><strong>Effect:</strong> Approved freezes are granted in 2-week or 4-week blocks. The length of the freeze extends the program end date. A freeze does not erase any past-due amount.</p>
+          <p><strong>Maximum Freeze Lengths (per rolling 12 months):</strong> Travel/Personal — up to 8 weeks in blocks of at least 2 weeks. Medical — up to 12 weeks with documentation.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: freeze policy" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 13: Schedule & Coach Changes -->
+    <div class="section">
+      <div class="section-header">13. Schedule &amp; Coach Changes</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Membership is for access to coaching services, not a specific coach or class time. Premier Health &amp; Lifestyle operates on a small-group, coach-led schedule. Specific class days and times are not guaranteed and may be changed, combined, or discontinued based on demand and coach availability.</p>
+          <p>If a particular class time is not consistently attended, Premier may remove or reschedule that class time by providing at least 14 days' notice via email and/or text. A change or removal of a specific class time does not constitute grounds for a refund, provided reasonable alternative training times are offered.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: schedule changes" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 14: Price Changes -->
+    <div class="section">
+      <div class="section-header">14. Price Changes After Term / Renewals</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>During a fixed term, the rate is locked. After the term, the Agreement converts to month-to-month at current rates, with at least <strong>30 days' written notice</strong> of any increase.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: price changes" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 15: PIF Pause/Downgrade -->
+    <div class="section">
+      <div class="section-header">15. Paid-In-Full — Pause or Downgrade</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>PIF covers a specific program, dates, and frequency. Switching to a different program or frequency is a new agreement; PIF dollars don't automatically convert. Any accommodation is at Premier Health &amp; Lifestyle's discretion (credit, extension, etc.) and is not guaranteed.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: PIF pause" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 16: Disputes -->
+    <div class="section">
+      <div class="section-header">16. Disputes &amp; Chargebacks</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Member agrees to contact Premier Health &amp; Lifestyle first to attempt resolution before disputing charges with their bank or card issuer.</p>
+          <p>Stopping payment with the bank does not cancel the client's contractual obligation; the client must still follow the written cancellation process.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: disputes" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 17: Assumption of Risk -->
+    <div class="section">
+      <div class="section-header">17. Assumption of Risk, Release &amp; Indemnity</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Client understands that participation in physical activity involves inherent risks, including but not limited to muscle injury, falls, cardiovascular events, disability, and death. Client voluntarily assumes all such risks.</p>
+          <p>To the fullest extent permitted by law, Client releases and discharges the Business, its owners, employees, contractors, and agents from claims arising from participation, including claims of ordinary negligence. Client agrees to indemnify and hold harmless the Business from any claims, damages, or legal fees arising from the Client's participation.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: assumption of risk" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 18: Health & Consent -->
+    <div class="section">
+      <div class="section-header">18. Health, Consent &amp; Emergencies</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>Client affirms one of the following:</p>
+        </div>
+        <div class="field">
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="Health Clearance" value="No condition preventing participation" required> I have no condition that would prevent participation</label>
+            <label class="radio-item"><input type="radio" name="Health Clearance" value="Physician clearance obtained"> I have obtained physician clearance</label>
+          </div>
+        </div>
+        <div class="legal-text">
+          <p>Client agrees to disclose relevant health information and notify the Business of changes. Client may stop participation at any time and is responsible for communicating discomfort or medical concerns.</p>
+          <p>Client authorizes the Business to obtain emergency medical treatment if needed and accepts financial responsibility for related costs.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: health consent" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 19: Media & Privacy -->
+    <div class="section">
+      <div class="section-header">19. Media &amp; Privacy</div>
+      <div class="section-body">
+        <div class="field">
+          <label>Photo &amp; Video Authorization:</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="Media Authorization" value="Authorized" required> I authorize the use of my photos/video for marketing</label>
+            <label class="radio-item"><input type="radio" name="Media Authorization" value="Not authorized"> I do NOT authorize the use of my photos/video</label>
+          </div>
+        </div>
+        <div class="legal-text">
+          <p>Client acknowledges they have access to the Business's Privacy Policy and understand how their personal data is collected and used.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: media privacy" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 20: Termination -->
+    <div class="section">
+      <div class="section-header">20. Termination by Business</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>The Business may suspend or terminate this Agreement for non-payment, violation of studio rules, unsafe behavior, harassment, or misconduct. Any unused prepaid amounts, if any, will be handled in accordance with applicable law.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: termination" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 21: Miscellaneous -->
+    <div class="section">
+      <div class="section-header">21. Miscellaneous</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>If any part of this Agreement is found unenforceable, the remaining provisions remain in effect. This Agreement is the entire agreement between the parties and supersedes all prior discussions.</p>
+        </div>
+        <div class="initials-row">
+          <label>Client Initials:</label>
+          <input type="text" class="initials-input" name="Initials: miscellaneous" maxlength="5" required placeholder="___">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 22: Signatures -->
+    <div class="section">
+      <div class="section-header">22. Signature</div>
+      <div class="section-body">
+        <div class="legal-text">
+          <p>By signing below, Client confirms they have <strong>read, understood, and agreed</strong> to all terms of this Agreement. This electronic signature is legally binding.</p>
+        </div>
+
+        <div class="sig-section">
+          <h3>Draw your signature</h3>
+          <div class="sig-canvas-wrap">
+            <canvas id="sig-canvas"></canvas>
+          </div>
+          <div class="sig-actions">
+            <button type="button" class="btn-clear" id="clear-sig">Clear signature</button>
+          </div>
+          <input type="hidden" name="Signature Image" id="sig-data">
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="printed-name">Printed Full Name</label>
+            <input type="text" id="printed-name" name="Printed Name" required placeholder="Your full legal name">
+          </div>
+          <div class="field">
+            <label for="sig-date">Date</label>
+            <input type="date" id="sig-date" name="Signature Date" required>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:8px">
+          <label class="check-item" style="border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:#fafafa;cursor:pointer">
+            <input type="checkbox" id="agree-checkbox" required style="width:18px;height:18px;accent-color:var(--brand);flex-shrink:0">
+            <span style="font-size:.86rem;line-height:1.5">I confirm I have read and agree to all terms of this Master Client Services Agreement. I understand my electronic signature above is legally binding.</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-submit">Sign &amp; Submit Agreement</button>
+    </div>
+
+  </form>
+
+  <div class="success-msg" id="success-msg">
+    <div class="icon">✓</div>
+    <h2>Agreement signed &amp; submitted!</h2>
+    <p>Thank you — your signed agreement has been received by Premier Health &amp; Lifestyle.<br>Coach Joe will be in touch to confirm your start date and next steps.</p>
+  </div>
+
+</div>
+
+<script>
+  // Set today's date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('sig-date').value = today;
+
+  // Mirror email to _replyto
+  document.getElementById('client-email').addEventListener('input', function() {
+    document.getElementById('replyto-field').value = this.value;
+  });
+
+  // Signature pad
+  const canvas = document.getElementById('sig-canvas');
+  const ratio = Math.max(window.devicePixelRatio || 1, 1);
+  function resizeCanvas() {
+    const w = canvas.offsetWidth;
+    canvas.width = w * ratio;
+    canvas.height = 160 * ratio;
+    canvas.getContext('2d').scale(ratio, ratio);
+    sigPad.clear();
+  }
+  const sigPad = new SignaturePad(canvas, {
+    backgroundColor: 'rgba(250,250,250,0)',
+    penColor: '#1e2a28',
+    minWidth: 1.5,
+    maxWidth: 3
+  });
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  document.getElementById('clear-sig').addEventListener('click', () => sigPad.clear());
+
+  // Submit
+  document.getElementById('agreement-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (!sigPad.isEmpty()) {
+      document.getElementById('sig-data').value = sigPad.toDataURL('image/png');
+    }
+
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Something went wrong — please try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
